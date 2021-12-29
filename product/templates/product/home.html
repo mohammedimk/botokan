@@ -1,0 +1,62 @@
+{% extends 'product/layout.html' %}
+{% load static %}
+
+
+{% block body %}
+<center>
+    <marquee><img src="{% static 'images/mahzarat.png' %}"></marquee>
+<br>
+    <br>
+    <div class="container" style="float:left;">
+
+    <a href="{% url 'register' %}">
+        <button type="button" class="btn btn-primary btn-lg" id="book">Register Here To Book your Product</button>
+    </a>
+</div>
+
+<div class="card-body">
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Price</td>
+                <td>Image</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for product in products %}
+
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td></td>
+                    <td>${{ product.price }}</td>
+                    <td>
+                        <img src="{{ product.imageURL }}" id="image3" class="image" name="slide" alt="product2">
+                    </td>
+               {% endfor %}
+ </tr>
+
+            </tbody>
+        </table>
+
+
+        </div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+
+
+</center>
+
+{% endblock %}

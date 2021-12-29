@@ -1,0 +1,58 @@
+{% extends 'product/layout.html' %}
+
+
+{% block body %}
+
+<br>
+<hr style="background-color: blue;">
+<h2>Coose a Best Product that Best suite Your Need.</h2>
+
+
+<div class="row">
+
+        {% for product in products %}
+
+        <div class="col-lg-{{ number_of_cart_items }}">
+
+              <img  src="{{ product.imageURL }}" alt="Card image cap">
+
+                <div class="box-element product">
+
+                    <h5 class="card-title"><strong>{{ product.name }}</strong></h5>
+
+                    <button data-product={{product.id}} data-action="add"
+                            class="btn btn-outline-secondary add-btn update-cart">
+                        Add to Cart</button>
+
+                    <a href="{% url 'cart' %}" class="btn btn-outline-success">View</a>
+
+
+                <p class="card-text">${{ product.price|floatformat:2 }}</p>
+
+                    <button class="btn btn-primary update-cart" id="button1" data-action="add"
+                            data-product={{product.id}} data-product1={{product.name}}>Add To cart</button>
+                </div>
+        </div>
+    <br><br>
+
+        {% endfor %}
+
+</div>
+<script>
+
+var updateBtns = document.getElementsByClassName('update-cart');
+
+    for(var i=0; i < updateBtns.length; i++){
+
+        updateBtns[i].addEventListener('click', function(){
+
+                var productName = this.dataset.product1;
+
+
+                alert(`Hey ${user} you select ${productName}`)
+        })
+    }
+</script>
+
+
+    {% endblock %}

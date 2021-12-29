@@ -1,0 +1,69 @@
+{% extends 'product/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+                <a class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue shopping</a><br><br>
+
+
+                <table class="table table-bordered table-striped">
+
+                    <tr>
+                        <th><h5>Number of Items: <strong>{{ order.get_cart_items }}</strong></h5></th>
+
+                         <th><h5>Total Price: <strong>${{ order.get_cart_total }}</strong></h5></th>
+
+                        <th>
+                            <a style="float:right; margin: 5px;" class="btn btn-success"
+                               href="">Checkout</a>
+                        </th>
+                    </tr>
+                </table>
+
+                    <div style="flex:2"></div>
+
+                <table>
+
+                    <tr>
+
+                    <th><strong>Item</strong></th>
+                    <th><strong>Price</strong></th>
+                    <th><strong>Quantity</strong></th>
+                        <th><strong>Images</strong></th>
+
+                    </tr>
+
+
+
+                {% for item in order_items %}
+                <tr>
+
+                            <td><strong>{{ item.product.name }}</strong></td>
+
+                            <td><strong>${{ item.product.price|floatformat:2 }}</strong></td>
+
+                            <td><strong>{{ item.quantity }}</strong></td>
+
+                            <td><img class="row-image" src="{{ item.product.imageURL }}"></td>
+
+                </tr>
+                             <!--   <div class="quantity">
+                                    <img data-product={{item.product.id}} data-action="add"
+                                         class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
+
+                                    <img data-product={{item.product.id}} data-action="remove"
+                                         class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
+                                </div>
+                                -->
+
+
+                {% endfor %}
+
+                </table>
+
+
+
+        <!--<button class="btn btn-primary"><a href="{% url 'update_item' %}">Submit Order</a></button>
+-->
+
+{% endblock %}
