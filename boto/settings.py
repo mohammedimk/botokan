@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('boto_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['botokan.herokuapp.com']
 
 
 # Application definition
@@ -79,13 +79,13 @@ WSGI_APPLICATION = 'boto.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        # 'NAME': os.environ.get('db_database'),
-        # 'USER': os.environ.get('db_user'),
-        # 'PASSWORD': os.environ.get('db_password'),
-        # 'PORT': '5432',
-        # 'HOST': os.environ.get('db_host'),
+        'NAME': os.environ.get('db_database'),
+        'USER': os.environ.get('db_user'),
+        'PASSWORD': os.environ.get('db_password'),
+        'PORT': '5432',
+        'HOST': os.environ.get('db_host'),
 
     }
 }
